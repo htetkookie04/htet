@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Get all navigation links
     const navLinks = document.querySelectorAll('.nav-link');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -18,8 +20,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
             }
+
+            if (navMenu && navToggle && navMenu.classList.contains('nav-menu--open')) {
+                navMenu.classList.remove('nav-menu--open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     });
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', String(!expanded));
+            navMenu.classList.toggle('nav-menu--open');
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 860 && navMenu.classList.contains('nav-menu--open')) {
+                navMenu.classList.remove('nav-menu--open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 
     // Active navigation link highlighting on scroll
     const sections = document.querySelectorAll('section[id]');
