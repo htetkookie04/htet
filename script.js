@@ -7,7 +7,7 @@ const translations = {
         'nav.contact': 'Contact',
         'hero.greeting.start': 'Hello, I\'m ',
         'hero.greeting.end': '',
-        'hero.title': 'Project Manager',
+        'hero.title': 'Korean Interpreter',
         'hero.subtitle': 'based in Myanmar.',
         'hero.resume': 'Resume',
         'about.title': 'about',
