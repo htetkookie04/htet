@@ -29,13 +29,13 @@ const translations = {
         'work.project3.description': 'A basic web platform utilizing HTML for structure and demonstrating fundamental web development practices.',
         'work.project4.description': 'Developed a React Native functional prototype for a fashion application (influencers/users), featuring a complete posting system and tappable monetization links. Showcases core skills in mobile state management and cross-platform UI development.',
         'work.project5.title': 'Job Portal System',
-        'work.project5.description': 'Designed a scalable and responsive job portal system UI (Novaliana), focusing on component-based layout architecture, optimized user flow, and modular interface design. Implemented structured job listing presentation, advanced search interaction patterns, and role-based interface separation for admin and public users, demonstrating strong expertise in system design, UI engineering, and usability optimization.',
+        'work.project5.description': 'Scalable, responsive job portal UI (Novaliana) with component-based layout, optimized user flow, and role-based views for admin and public users.',
         'work.project6.title': 'Korean With Us — Admin',
-        'work.project6.description': 'Full-stack education management system built with React 18 + TypeScript (frontend) and Node.js + Express + TypeScript (backend). Uses PostgreSQL with Prisma ORM and JWT authentication for secure, role-based access. Scalable admin dashboard for managing courses, enrollments, and financial operations.',
+        'work.project6.description': 'Full-stack education platform: React 18 + TypeScript, Node.js + Express, PostgreSQL/Prisma, JWT. Admin dashboard for courses, enrollments, and finances.',
         'work.project7.title': 'Novaliana Dictionary',
-        'work.project7.description': 'Multilingual dictionary web application for searching and learning Korean vocabulary with Myanmar and English translations. Features real-time search, categorized word entries, daily conversation tags, and a Word of the Day to enhance vocabulary learning.',
+        'work.project7.description': 'Multilingual Korean dictionary (Myanmar & English). Real-time search, categories, daily phrases, and Word of the Day.',
         'work.project8.title': 'Kookie Move On',
-        'work.project8.description': 'Motivational web app to track the "No Contact" journey and support emotional healing. Features a streak-based day counter, interactive calendar with color-coded status (No Contact, Contact, Reset), and daily emotion logging with emojis and notes. Searchable and editable records help users understand patterns, build self-control, and visualize healing progress—focusing on habit reinforcement, emotional awareness, and structured personal growth.',
+        'work.project8.description': 'Motivational app to track "No Contact" and support emotional healing. Streak counter, color-coded calendar, daily emotion logs. Searchable records for patterns and progress.',
         'contact.title': 'contact',
         'contact.description': 'A dedicated professional and quick learner. For collaboration opportunities, project inquiries, or to verify my technical portfolio, please contact me through the following channels.',
         'footer.rights': 'All rights reserved.'
@@ -69,13 +69,13 @@ const translations = {
         'work.project3.description': '구조를 위한 HTML을 활용하고 기본 웹 개발 관행을 보여주는 기본 웹 플랫폼.',
         'work.project4.description': '패션 애플리케이션(인플루언서/사용자)을 위한 React Native 기능 프로토타입을 개발했습니다. 완전한 게시 시스템과 탭 가능한 수익화 링크를 특징으로 합니다. 모바일 상태 관리 및 크로스 플랫폼 UI 개발의 핵심 기술을 보여줍니다.',
         'work.project5.title': '구인구직 포털 시스템',
-        'work.project5.description': '컴포넌트 기반 레이아웃 아키텍처, 최적화된 사용자 흐름, 모듈형 인터페이스 디자인에 중점을 둔 확장 가능하고 반응형 구인구직 포털 시스템 UI(노발리아나)를 설계했습니다. 구조화된 채용 공고 표시, 고급 검색 상호작용 패턴, 관리자 및 일반 사용자를 위한 역할 기반 인터페이스 분리를 구현하여 시스템 설계, UI 엔지니어링 및 사용성 최적화에 대한 전문성을 보여줍니다.',
+        'work.project5.description': '확장 가능하고 반응형 구인구직 포털 UI(노발리아나). 컴포넌트 기반 레이아웃, 최적화된 사용자 흐름, 관리자/일반 사용자 역할별 화면 구성.',
         'work.project6.title': 'Korean With Us — 관리자',
-        'work.project6.description': 'React 18 + TypeScript(프론트엔드)와 Node.js + Express + TypeScript(백엔드)로 구축한 풀스택 교육 관리 시스템. PostgreSQL, Prisma ORM, JWT 인증으로 안전한 역할 기반 접근을 제공합니다. 과정, 등록 및 재무 운영 관리를 위한 확장 가능한 관리자 대시보드.',
+        'work.project6.description': '풀스택 교육 플랫폼: React 18 + TypeScript, Node.js + Express, PostgreSQL/Prisma, JWT. 과정·등록·재무 관리자 대시보드.',
         'work.project7.title': '노발리아나 사전',
-        'work.project7.description': '미얀마어 및 영어 번역과 함께 한국어 어휘 검색 및 학습이 가능한 다국어 사전 웹 애플리케이션. 실시간 검색, 분류별 단어 항목, 일상 회화 태그, 오늘의 단어 기능으로 어휘 학습을 강화합니다.',
+        'work.project7.description': '다국어 한국어 사전 (미얀마어·영어). 실시간 검색, 분류, 일상 회화, 오늘의 단어.',
         'work.project8.title': '쿠키 무브 온',
-        'work.project8.description': '"노 컨택트" 여정을 추적하고 감정 회복을 돕는 동기 부여 웹 앱. 연속 일수 카운터, 색상으로 구분된 상태(노 컨택트, 컨택트, 리셋)의 인터랙티브 캘린더, 이모지와 메모가 있는 일일 감정 기록. 검색·편집 가능한 기록으로 패턴 이해, 자기 통제, 회복 진행 시각화—습관 강화, 감정 인식, 체계적인 성장에 초점.',
+        'work.project8.description': '"노 컨택트" 추적 및 감정 회복 지원 동기 부여 앱. 연속 일수 카운터, 색상 캘린더, 일일 감정 기록. 패턴·진행 확인용 검색 가능 기록.',
         'contact.title': '연락처',
         'contact.description': '전문적이고 빠른 학습자입니다. 협업 기회, 프로젝트 문의 또는 기술 포트폴리오 확인을 위해 다음 채널을 통해 연락해 주세요.',
         'footer.rights': '모든 권리 보유.'
@@ -109,13 +109,13 @@ const translations = {
         'work.project3.description': 'ဖွဲ့စည်းပုံအတွက် HTML ကို အသုံးပြုသော အခြေခံ ဝဘ် ပလက်ဖောင်းတစ်ခုဖြစ်ပြီး အခြေခံ ဝဘ် ဖွံ့ဖြိုးတိုးတက်မှု လုပ်ထုံးလုပ်နည်းများကို ပြသသည်။',
         'work.project4.description': 'ဖက်ရှင် အက်ပ်လီကေးရှင်း (ဩဇာရှိသူများ/အသုံးပြုသူများ) အတွက် React Native လုပ်ဆောင်ချက် ပုံစံကို ဖွံ့ဖြိုးတိုးတက်စေခဲ့ပြီး၊ ပြီးပြည့်စုံသော ပို့စ်တင်ခြင်း စနစ်နှင့် နှိပ်နိုင်သော ငွေရှာဖွေမှု လင့်ခ်များကို ပါဝင်သည်။ မိုဘိုင်း အခြေအနေ စီမံခန့်ခွဲမှုနှင့် ပလက်ဖောင်းများစွာ UI ဖွံ့ဖြိုးတိုးတက်မှုတွင် အဓိက ကျွမ်းကျင်မှုများကို ပြသသည်။',
         'work.project5.title': 'အလုပ်အကိုင်ပလက်ဖောင်း စနစ်',
-        'work.project5.description': 'ကွန်ပြုန်းအခြေခံ လေယာဉ်ပြ ဗိသုကာ၊ အကောင်းဆုံး အသုံးပြုသူ စီးဆင်းမှုနှင့် မော်ဂျူလာ အင်တာဖေ့စ် ဒီဇိုင်းကို အာရုံစိုက်သည့် ချဲ့ထွင်နိုင်ပြီး တုံ့ပြန်သော အလုပ်အကိုင်ပလက်ဖောင်း UI (နိုဗာလီယာနာ) ကို ဒီဇိုင်းပြုလုပ်ခဲ့သည်။ ဖွဲ့စည်းထားသော အလုပ်ကြော်ငြာပြသခြင်း၊ အဆင့်မြင့် ရှာဖွေမှု အပြန်အလှန် ပုံစံများနှင့် စီမံခန့်ခွဲသူနှင့် ပြည်သူ အသုံးပြုသူများအတွက် အခန်းကဏ္ဍအခြေခံ အင်တာဖေ့စ် ခွဲခြားမှုကို အကောင်အထည်ဖော်ခဲ့ပြီး စနစ်ဒီဇိုင်း၊ UI အင်ဂျင်နီယာပညာနှင့် အသုံးပြုနိုင်မှု အကောင်းဆုံးဖြစ်အောင်ပြုလုပ်ထားသည်။',
+        'work.project5.description': 'ချဲ့ထွင်နိုင်ပြီး တုံ့ပြန်သော အလုပ်အကိုင်ပလက်ဖောင်း UI (နိုဗာလီယာနာ)။ ကွန်ပြုန်းအခြေခံ လေယာဉ်ပြ၊ အကောင်းဆုံး အသုံးပြုသူ စီးဆင်းမှုနှင့် စီမံခန့်ခွဲသူ/ပြည်သူ အခန်းကဏ္ဍအလိုက် မျက်နှာပြင်များ။',
         'work.project6.title': 'Korean With Us — စီမံခန့်ခွဲရေး',
-        'work.project6.description': 'React 18 + TypeScript (ရှေ့ဆုံး) နှင့် Node.js + Express + TypeScript (နောက်ဆုံး) ဖြင့် တည်ဆောက်ထားသော ပြည့်စုံသော ပညာရေး စီမံခန့်ခွဲမှု စနစ်။ PostgreSQL၊ Prisma ORM နှင့် JWT အတည်ပြုခြင်းဖြင့် လုံခြုံသော အခန်းကဏ္ဍအခြေခံ ဝင်ရောက်ခွင့်ပေးသည်။ သင်တန်းများ၊ စာရင်းသွင်းခြင်းများနှင့် ငွေကြေး လုပ်ငန်းများ စီမံခန့်ခွဲရန် ချဲ့ထွင်နိုင်သော စီမံခန့်ခွဲရေး ဒိုင်ခွက်။',
+        'work.project6.description': 'ပြည့်စုံသော ပညာရေး ပလက်ဖောင်း: React 18 + TypeScript, Node.js + Express, PostgreSQL/Prisma, JWT။ သင်တန်း၊ စာရင်းသွင်းခြင်း၊ ငွေကြေး စီမံခန့်ခွဲရေး ဒိုင်ခွက်။',
         'work.project7.title': 'နိုဗာလီယာနာ အဘိဓာန်',
-        'work.project7.description': 'မြန်မာနှင့် အင်္ဂလိပ် ဘာသာပြန်များဖြင့် ကိုရီးယား ဝေါဟာရ ရှာဖွေခြင်းနှင့် သင်ယူခြင်းအတွက် ဘာသာစကားမျိုးစုံ အဘိဓာန် ဝဘ်အက်ပ်လီကေးရှင်း။ လက်ချင်း ရှာဖွေမှု၊ အမျိုးအစားခွဲ စကားလုံးများ၊ နေ့စဉ် စကားပြောခေါင်းစဉ်များနှင့် ယနေ့၏ စကားလုံး အင်္ဂါရပ်ဖြင့် ဝေါဟာရ သင်ယူမှုကို မြှင့်တင်သည်။',
+        'work.project7.description': 'ဘာသာစကားမျိုးစုံ ကိုရီးယား အဘိဓာန် (မြန်မာ·အင်္ဂလိပ်)။ လက်ချင်း ရှာဖွေမှု၊ အမျိုးအစားများ၊ နေ့စဉ် စကားပြော၊ ယနေ့၏ စကားလုံး။',
         'work.project8.title': 'Kookie Move On',
-        'work.project8.description': '"ဆက်သွယ်မှုမရှိ" ခရီးကို ခြေရာခံပြီး စိတ်ခံစားမှု ပြန်လည်ကောင်းမွန်ရေး ပံ့ပိုးသည့် စိတ်အားတက်စရာ ဝဘ်အက်ပ်။ ဆက်တိုက်ရက်များ ရေတွက်ခြင်း၊ အရောင်ခွဲထားသော အခြေအနေ (ဆက်သွယ်မှုမရှိ၊ ဆက်သွယ်မှု၊ ပြန်စ) ပါ ပြန်လည်အပြန်အလှန်က္ခဒိန်၊ နေ့စဉ် စိတ်ခံစားမှု မှတ်တမ်း (အီမိုဂျီနှင့် မှတ်စု)။ ရှာဖွေနိုင် ပြင်ဆင်နိုင်သော မှတ်တမ်းများဖြင့် ပုံစံများ နားလည်ခြင်း၊ ကိုယ့်ကိုယ်ထိန်းချုပ်မှု၊ ပြန်ကောင်းမှု တိုးတက်ခြင်း မြင်နိုင်သည်—အကျင့်ခိုင်မာစေခြင်း၊ စိတ်ခံစားမှု သတိပြုခြင်း၊ စနစ်ကျသော ကိုယ်ရေး ကြီးထွားမှုကို အာရုံစိုက်သည်။',
+        'work.project8.description': '"ဆက်သွယ်မှုမရှိ" ခြေရာခံပြီး စိတ်ခံစားမှု ပြန်ကောင်းရေး ပံ့ပိုးသည့် စိတ်အားတက်စရာ အက်ပ်။ ဆက်တိုက်ရက် ရေတွက်၊ အရောင်ခွဲ က္ခဒိန်၊ နေ့စဉ် စိတ်ခံစားမှု မှတ်တမ်း။ ပုံစံနှင့် တိုးတက်မှု ရှာဖွေနိုင်သော မှတ်တမ်းများ။',
         'contact.title': 'ဆက်သွယ်ရန်',
         'contact.description': 'အာရုံစိုက်ထားသော ပညာရှင်တစ်ဦးနှင့် လျင်မြန်စွာ သင်ယူသူဖြစ်သည်။ ပူးပေါင်းဆောင်ရွက်မှု အခွင့်အလမ်းများ၊ စီမံကိန်း မေးမြန်းချက်များ သို့မဟုတ် ကျွန်တော့် နည်းပညာ ပို့တ်ဖိုလီယိုကို အတည်ပြုရန် အတွက် ကျေးဇူးပြု၍ အောက်ပါ ချန်နယ်များမှတစ်ဆင့် ဆက်သွယ်ပါ။',
         'footer.rights': 'အခွင့်အရေးအားလုံး လက်ဝယ်ရှိသည်။'
@@ -232,28 +232,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', highlightActiveSection);
     
-    // Add fade-in animation on scroll
+    // Scroll-triggered animations for all screens
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
     };
-    
+
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animated');
             }
         });
     }, observerOptions);
-    
-    // Observe all sections and project cards
-    const animatedElements = document.querySelectorAll('.timeline-item, .project-card, .contact-card');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+
+    // Observe every element with animate-on-scroll
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // Stagger project cards within the grid
+    document.querySelectorAll('.projects-grid .project-card').forEach((el, index) => {
+        el.style.transitionDelay = `${Math.min(index * 0.07, 0.5)}s`;
+    });
+    // Stagger timeline items
+    document.querySelectorAll('.timeline .timeline-item').forEach((el, index) => {
+        el.style.transitionDelay = `${index * 0.12}s`;
     });
 });
 
