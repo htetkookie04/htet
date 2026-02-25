@@ -249,10 +249,246 @@ document.addEventListener('DOMContentLoaded', function() {
     // Observe every element with animate-on-scroll
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-    // Stagger project cards within the grid
-    document.querySelectorAll('.projects-grid .project-card').forEach((el, index) => {
-        el.style.transitionDelay = `${Math.min(index * 0.07, 0.5)}s`;
+    // Stagger project slides (carousel or marquee)
+    document.querySelectorAll('.work-carousel-track .project-slide, .work-marquee-content .project-slide').forEach((el, index) => {
+        el.style.transitionDelay = `${Math.min(index * 0.05, 0.4)}s`;
     });
+
+    // ----- Work carousel: click to expand, drag/swipe to scroll -----
+    const carousel = document.querySelector('.work-carousel');
+    const carouselTrack = document.querySelector('.work-carousel-track');
+    const carouselSlides = document.querySelectorAll('.work-carousel .project-slide');
+
+    if (carousel && carouselTrack && carouselSlides.length > 0) {
+        let isDown = false;
+        let startX = 0;
+        let scrollLeftStart = 0;
+        let hasMoved = false;
+        const dragThreshold = 8;
+
+        carousel.addEventListener('mousedown', (e) => {
+            if (!e.target.closest('.project-slide')) return;
+            isDown = true;
+            hasMoved = false;
+            startX = e.pageX;
+            scrollLeftStart = carousel.scrollLeft;
+            carousel.style.scrollSnapType = 'none';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const walk = e.pageX - startX;
+            if (Math.abs(walk) > dragThreshold) hasMoved = true;
+            carousel.scrollLeft = scrollLeftStart - walk;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDown) {
+                isDown = false;
+                carousel.style.scrollSnapType = '';
+            }
+        });
+
+        carousel.addEventListener('touchstart', (e) => {
+            if (!e.target.closest('.project-slide')) return;
+            hasMoved = false;
+            startX = e.touches[0].pageX;
+            scrollLeftStart = carousel.scrollLeft;
+        }, { passive: true });
+
+        carousel.addEventListener('touchmove', (e) => {
+            const walk = e.touches[0].pageX - startX;
+            if (Math.abs(walk) > dragThreshold) hasMoved = true;
+        }, { passive: true });
+
+        carouselTrack.addEventListener('click', (e) => {
+            const slide = e.target.closest('.project-slide');
+            if (!slide) return;
+            if (e.target.closest('.btn-close-detail')) {
+                e.preventDefault();
+                slide.classList.remove('is-expanded');
+                const d = slide.querySelector('.project-slide-detail');
+                if (d) d.setAttribute('aria-hidden', 'true');
+                return;
+            }
+            if (e.target.closest('.btn-project')) return;
+            if (hasMoved) return;
+            const detail = slide.querySelector('.project-slide-detail');
+            slide.classList.toggle('is-expanded');
+            if (detail) detail.setAttribute('aria-hidden', slide.classList.contains('is-expanded') ? 'false' : 'true');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.project-slide')) {
+                carouselSlides.forEach((s) => {
+                    s.classList.remove('is-expanded');
+                    const d = s.querySelector('.project-slide-detail');
+                    if (d) d.setAttribute('aria-hidden', 'true');
+                });
+            }
+        });
+    }
+
+    // ----- Work marquee: seamless infinite scroll (double content + hover pause + touch drag) -----
+    const marqueeEl = document.querySelector('.work-marquee');
+    const marqueeTrack = document.querySelector('.work-marquee-track');
+    const marqueeContent = document.querySelector('.work-marquee-content');
+
+    if (marqueeEl && marqueeTrack && marqueeContent) {
+        // Double content for seamless loop
+        if (marqueeTrack.querySelectorAll('.work-marquee-content').length === 1) {
+            const clone = marqueeContent.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            marqueeTrack.appendChild(clone);
+        }
+
+        const direction = (marqueeEl.getAttribute('data-direction') || 'left').toLowerCase();
+        const speedPxPerSec = 48;
+        let position = 0;
+        let contentWidth = 0;
+        let paused = false;
+        let dragging = false;
+        let startX = 0;
+        let resumeTimeoutId = null;
+        const resumeDelayMs = 1500;
+        let startPosition = 0;
+        let lastTime = 0;
+        let rafId = null;
+
+        function measure() {
+            const first = marqueeTrack.querySelector('.work-marquee-content');
+            contentWidth = first ? first.offsetWidth : 0;
+        }
+
+        function normalizePosition() {
+            if (!contentWidth) return;
+            if (direction === 'right') {
+                while (position >= contentWidth) position -= contentWidth;
+                while (position < 0) position += contentWidth;
+            } else {
+                while (position > 0) position -= contentWidth;
+                while (position <= -contentWidth) position += contentWidth;
+            }
+        }
+
+        function tick(time) {
+            if (!contentWidth) {
+                measure();
+                rafId = requestAnimationFrame(tick);
+                return;
+            }
+            const delta = lastTime ? Math.min(time - lastTime, 50) : 0;
+            lastTime = time;
+
+            if (!paused && !dragging) {
+                const step = speedPxPerSec * delta / 1000;
+                if (direction === 'right') {
+                    position += step;
+                    if (position >= contentWidth) position -= contentWidth;
+                } else {
+                    position -= step;
+                    if (position <= -contentWidth) position += contentWidth;
+                }
+            }
+
+            marqueeTrack.style.transform = `translate3d(${position}px, 0, 0)`;
+            rafId = requestAnimationFrame(tick);
+        }
+
+        marqueeEl.addEventListener('mouseenter', () => {
+            paused = true;
+            marqueeEl.classList.add('is-paused');
+        });
+        marqueeEl.addEventListener('mouseleave', () => {
+            paused = false;
+            marqueeEl.classList.remove('is-paused');
+        });
+
+        marqueeEl.addEventListener('touchstart', (e) => {
+            dragging = true;
+            if (resumeTimeoutId) clearTimeout(resumeTimeoutId);
+            resumeTimeoutId = null;
+            startX = e.touches[0].clientX;
+            startPosition = position;
+            marqueeEl.classList.add('is-dragging');
+        }, { passive: true });
+
+        marqueeEl.addEventListener('touchmove', (e) => {
+            if (!dragging || !contentWidth) return;
+            position = startPosition + (startX - e.touches[0].clientX);
+            normalizePosition();
+            resumeTimeoutId = setTimeout(() => {
+                resumeTimeoutId = null;
+            }, resumeDelayMs);
+        }, { passive: true });
+
+        marqueeEl.addEventListener('touchend', () => {
+            dragging = false;
+            marqueeEl.classList.remove('is-dragging');
+        }, { passive: true });
+
+        // Card expand/collapse and links (delegate on marquee)
+        let hasMoved = false;
+        const dragThreshold = 8;
+        let pointerStartX = 0;
+
+        marqueeEl.addEventListener('mousedown', (e) => {
+            if (!e.target.closest('.project-slide')) return;
+            pointerStartX = e.pageX;
+            hasMoved = false;
+        });
+
+        marqueeEl.addEventListener('mousemove', (e) => {
+            if (e.buttons !== 1) return;
+            if (Math.abs(e.pageX - pointerStartX) > dragThreshold) hasMoved = true;
+        });
+
+        marqueeTrack.addEventListener('click', (e) => {
+            const slide = e.target.closest('.project-slide');
+            if (!slide) return;
+            if (e.target.closest('.btn-close-detail')) {
+                e.preventDefault();
+                slide.classList.remove('is-expanded');
+                const d = slide.querySelector('.project-slide-detail');
+                if (d) d.setAttribute('aria-hidden', 'true');
+                return;
+            }
+            if (e.target.closest('.btn-project')) return;
+            if (hasMoved) return;
+            paused = true;
+            marqueeEl.classList.add('is-paused');
+            const detail = slide.querySelector('.project-slide-detail');
+            slide.classList.toggle('is-expanded');
+                if (!e.target.closest('.work-marquee')) return;
+                paused = false;
+                marqueeEl.classList.remove('is-paused');
+                if (!e.target.closest('.work-marquee')) return;
+                paused = false;
+                marqueeEl.classList.remove('is-paused');
+            if (detail) detail.setAttribute('aria-hidden', slide.classList.contains('is-expanded') ? 'false' : 'true');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.project-slide')) {
+                document.querySelectorAll('.project-slide.is-expanded').forEach((s) => {
+                    s.classList.remove('is-expanded');
+                if (!e.target.closest('.work-marquee')) return;
+                paused = false;
+                marqueeEl.classList.remove('is-paused');
+                    const d = s.querySelector('.project-slide-detail');
+                    if (d) d.setAttribute('aria-hidden', 'true');
+                });
+            }
+        });
+
+        measure();
+        window.addEventListener('resize', () => {
+            measure();
+            normalizePosition();
+        });
+        rafId = requestAnimationFrame(tick);
+    }
+
     // Stagger timeline items
     document.querySelectorAll('.timeline .timeline-item').forEach((el, index) => {
         el.style.transitionDelay = `${index * 0.12}s`;

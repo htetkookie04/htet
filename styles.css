@@ -397,6 +397,7 @@ body {
     inset: 3px;
     background-color: var(--card-bg);
     border-radius: 50px;
+    border: 2px solid var(--border-color);
     z-index: -1;
     transition: background-color 0.3s ease;
 }
@@ -568,88 +569,292 @@ section {
     font-weight: bold;
 }
 
-/* Work Section */
+/* Work Section – Featured project card design (dark purple theme) */
+.work {
+    background: #E8E8F5;
+}
+
+.work .section-title {
+    color: #2D1B3D;
+}
+
 .work-intro {
     font-size: 1.2rem;
-    color: var(--text-secondary);
+    color: #4A3A5A;
     margin-bottom: 4rem;
     max-width: 900px;
     line-height: 1.8;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+/* Horizontal sliding carousel – image-only cards, click to expand */
+.work .container {
+    overflow: visible;
 }
 
-.project-card {
-    background-color: var(--card-bg);
+.work-carousel {
+    margin: 0 calc(-1 * clamp(1rem, 4vw, 2.5rem));
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.work-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.work-carousel-track {
+    display: flex;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    padding: 0.5rem clamp(1rem, 4vw, 2.5rem) 2rem;
+    width: max-content;
+}
+
+.project-slide {
+    flex: 0 0 auto;
+    width: min(480px, 92vw);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    position: relative;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 20px var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.65s ease-out;
+    background: linear-gradient(145deg, #ffffff 0%, #f8f6fc 35%, #f0eef8 70%, #e8e4f5 100%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 0 0 1px rgba(142, 118, 168, 0.06),
+        0 2px 8px rgba(45, 27, 61, 0.04),
+        0 12px 40px rgba(142, 118, 168, 0.12),
+        0 24px 64px rgba(45, 27, 61, 0.08);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
+    cursor: pointer;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px var(--shadow);
+.project-slide:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 0 0 1px rgba(142, 118, 168, 0.08),
+        0 4px 16px rgba(45, 27, 61, 0.06),
+        0 20px 56px rgba(142, 118, 168, 0.18),
+        0 32px 80px rgba(45, 27, 61, 0.1);
 }
 
-.project-image {
+.project-slide.is-expanded {
+    transform: scale(1.02);
+    box-shadow:
+        0 0 0 1px rgba(142, 118, 168, 0.08),
+        0 4px 16px rgba(45, 27, 61, 0.06),
+        0 20px 56px rgba(142, 118, 168, 0.18),
+        0 32px 80px rgba(45, 27, 61, 0.1);
+    cursor: default;
+}
+
+.project-slide-image {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--border-color) 100%);
+    background: linear-gradient(160deg, #f5f3fa 0%, #ebe8f5 100%);
 }
 
-.project-image a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-}
-
-.project-img {
+.project-slide-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    display: block;
 }
 
-.image-placeholder {
-    width: 100%;
-    height: 100%;
+.project-slide-detail {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(28, 20, 42, 0.92) 0%, rgba(45, 31, 61, 0.75) 45%, rgba(45, 31, 61, 0.4) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
+}
+
+.project-slide.is-expanded .project-slide-detail {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.project-slide-detail .project-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c4b5d4;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.project-slide-detail .project-date {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.project-slide-detail .project-title {
+    font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+    color: #fff;
+    margin-bottom: 0.65rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.project-slide-detail .project-description {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.65;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    margin-bottom: 0.85rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-slide.is-expanded .project-slide-detail .project-description {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    display: block;
+    overflow: visible;
+}
+
+.project-slide-detail .project-deco {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-slide-detail .project-deco .star {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.btn-project {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    background: #E8E8F5;
+    color: #2D1B3D;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-project:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-close-detail {
+    margin-left: auto;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(45, 27, 61, 0.08);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
-    opacity: 0.8;
+    padding: 0;
 }
 
-.project-info {
-    padding: 2rem;
+.btn-close-detail:hover {
+    background: rgba(45, 27, 61, 0.14);
+}
+
+/* Reuse project-label, project-date, project-title, project-description, project-deco for slide detail (above) */
+.project-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b4a0dc;
+    margin-bottom: 0.35rem;
 }
 
 .project-date {
-    font-size: 0.9rem;
-    color: var(--accent);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
 .project-title {
-    font-size: 1.5rem;
-    color: var(--text-primary);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: #fff;
     margin-bottom: 1rem;
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 .project-description {
-    color: var(--text-secondary);
-    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.75;
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    margin-bottom: 1rem;
+}
+
+.project-deco {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.project-deco .star {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+}
+
+@media (min-width: 900px) {
+    .project-slide {
+        width: 540px;
+    }
+}
+
+@media (max-width: 560px) {
+    .project-slide {
+        width: 95vw;
+    }
+
+    .work-carousel-track {
+        padding-left: clamp(1rem, 4vw, 2.5rem);
+        padding-right: clamp(1rem, 4vw, 2.5rem);
+    }
 }
 
 /* Contact Section */
